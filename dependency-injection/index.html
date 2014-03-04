@@ -44,12 +44,28 @@
 			<div class="slides">
 				<section>
 					<h1>Dependency Injection</h1>
-					<h3>some subtitle</h3>
+					<blockquote cite="">&ldquo;It's terrible to have to depend on someone else.&rdquo;</blockquote>
+					<p>&mdash; Jeff Lindsay, Dearly Devoted Dexter</p>
 					<p>
 						<small><a href="https://stojg.se/">Stig Lindqvist</a> / <a href="http://twitter.com/stojg">@stojg</a></small>
 					</p>
 				</section>
+				
+				<section>
+					<blockquote>
+						&ldquo;I'll talk for a while and hope sufficiently to provoke and inflame opinion that there'll be an outburst of chair-throwing at the end.&rdquo;
+					</blockquote>
+					<p>&mdash; Douglas Adams</p>
+				</section>
 
+				<section>
+					<p>DISCLAIMER</p>
+					<img src='images/disclaimer.png' />
+					<aside class="notes">
+						With great power comes great responsibility. Extensibility. Mix-ins. Debugging.
+					</aside>
+				</section>
+				
 				<section>
 					<section>
 						<h2>What GoF have to say about this</h2>
@@ -70,8 +86,8 @@
 				<section>
 					<h2>Wikipedia</h2>
 					<blockquote cite="http://en.wikipedia.org/wiki/Dependency_injection">
-						Dependency injection is a software design pattern that allows the removal of hard-coded 
-						dependencies and makes it possible to change them, whether at run-time or compile-time.
+						&ldquo;Dependency injection is a software design pattern that allows the removal of hard-coded 
+						dependencies and makes it possible to change them, whether at run-time or compile-time.&rdquo;
 					</blockquote>
 					<p class="fragment">
 						<img src="images/experts-needed.png" />
@@ -86,6 +102,7 @@
 						It's a purposefully-generic name used in computer science to describe an object that's created 
 						for a specific purpose (e.g. delivering emails).&rdquo;
 					</blockquote>
+					<p>&mdash; Symphony Framework on DI</p>
 				</section>
 
 				<section>
@@ -336,7 +353,7 @@
 					
 					<section data-markdown>
 						<script type="text/template">
-							## Only works "Objects"
+							## Only works on "Objects"
 	$controller = Injector::inst()->get('Controller');
 	assert($controller->mailerService instanceof MailerService);
 	
@@ -367,6 +384,11 @@
 
 						</script>
 					</section>
+				</section>
+				
+				<section>
+					<h2>Yeah, okey..</h2>
+					<img src="images/isortofgetit.gif" />
 				</section>
 				
 				<section>
@@ -418,6 +440,7 @@
 						<blockquote cite='http://en.wikipedia.org/wiki/Factory_(software_concept)'>
 							In object-oriented computer programming, a factory is an object for creating other objects.
 						</blockquote>
+						<div class="fragment smalltalk">&hellip; or let's have a cup of java.</div>
 					</section>
 					
 					<section data-markdown>
@@ -425,7 +448,7 @@
 							## The factory
 	class MailerFactoryImplementation implements SilverStripe\Framework\Injector\Factory {
 
-		// initialize complex classes here
+		// initialize classes here with a lot of tricky arguments and setup
 		public function create($service, array $params = array()) {
 		   return MailLogger::create();
 		}
@@ -475,160 +498,24 @@
 					</section>
 				</section>
 				
+				<section>
+					<h1>Thank you!</h1>
+					<p>You are now free to start hurling the chairs around!</p>
+				</section>
+				
+				
 				<section data-state="customevent">
 					<h2>Resources</h2>
 					<ul>
 						<li><a href='http://doc.silverstripe.org/framework/en/reference/injector'>SilverStripe documentation on Injector</a></li>
 						<li><a href='https://github.com/stojg/silverstripe-dependency-injection'>Code examples with tests</a></li>
-						<li><a href='http://api.silverstripe.org/3.1/class-Injector.html'>Injector API</a>
-						<li><a href="https://github.com/stojg/"></a>
+						<li><a href='http://api.silverstripe.org/3.1/class-Injector.html'>Injector API</a></li>
+						<li>Next step: <a href='https://groups.google.com/forum/#!topic/silverstripe-dev/LRj6AhKIaMg'>dev mailing list</a></li>
 					</ul>
-					
+					<hr />
+					<a href="https://github.com/stojg/slides.stojg.se">github/stojg/slides.stojg.se</a> | 
+						<a href="http://slides.stojg.se/">http://slides.stojg.se</a> | @stojg
 				</section>
-
-				<section>
-					<section data-background="#007777">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#007777"</code> on a slide to change the full page background to the given color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Repeated Image Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-				</section>
-
-				<section data-transition="linear" data-background="#4d7e65" data-background-transition="slide">
-					<h2>Background Transitions</h2>
-					<p>
-						Pass reveal.js the <code>backgroundTransition: 'slide'</code> config argument to make backgrounds slide rather than fade.
-					</p>
-				</section>
-
-				<section data-transition="linear" data-background="#8c4738" data-background-transition="slide">
-					<h2>Background Transition Override</h2>
-					<p>
-						You can override background transitions per slide by using <code>data-background-transition="slide"</code>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<section id="fragments">
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-current-blue">highlight-current-blue</p>
-					</section>
-				</section>
-
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-					</a>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-					<script>
-						document.getElementById('slideshare').attributeName = 'allowfullscreen';
-					</script>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
-				</section>
-
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>THE END</h1>
-					<h3>BY Hakim El Hattab / hakim.se</h3>
-				</section>
-
 			</div>
 
 		</div>
