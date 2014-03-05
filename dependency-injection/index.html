@@ -439,7 +439,7 @@
 						<blockquote cite='http://en.wikipedia.org/wiki/Factory_(software_concept)'>
 							In object-oriented computer programming, a factory is an object for creating other objects.
 						</blockquote>
-						<div class="fragment smalltalk">&hellip; or let's have a cup of java.</div>
+						<div class="fragment">&hellip; or let's have a cup of java.</div>
 					</section>
 					
 					<section data-markdown>
@@ -498,6 +498,73 @@
 				</section>
 				
 				<section>
+					<section>
+						<h2>Anti Patterns</h2>
+					</section>
+					<section data-markdown><script type='text/template'>
+						## Concrete class dependency
+						
+						### Bad
+	class MailerService {}
+
+	class OrderController extends Controller {
+
+		function __construct(MailerService $mailerService) {}
+	}
+						
+						### Better
+						
+	interface MailerService {}
+
+	class OrderController extends Controller {
+
+		function __construct(MailerService $mailerService) {}
+	}
+						
+					</script></section>
+					<section >
+						<h2>Don't be clever</h2>
+					
+						 <img src='images/spock.gif' />
+						 
+						 <blockquote cite="">
+							 &ldquo;Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.&rdquo;
+						 </blockquote> &mdash; Brian Kernighan
+						
+					</section>
+					<section data-markdown><script type='text/template'>
+						## Long constructor argument list
+						
+	class MailerService {
+
+		function __construct(MailerService $m, DBClass $db, SSViewer $rendered, SS_List $list, Member $member) {}
+	}
+	
+						This class probably does to much
+						
+					</script></section>
+					
+					<section data-markdown><script type='text/template'>
+						## Propagating Dependency
+						
+						Classes have dependencies that are not used, but passed on to it's own dependencies.
+						
+	class MyClass {
+
+		static $dependencies = array(
+			'mailerService' => '%$MailerService',
+			'db' => '%$DataBase'
+		);
+
+		function doSomething() {
+			$this->mailerService->send($this->db);
+		}
+	}
+						
+					</script></section>
+				</section>
+				
+				<section>
 					<h1>Thank you!</h1>
 					<p>You are now free to start hurling the chairs around!</p>
 				</section>
@@ -510,9 +577,9 @@
 						<li><a href='https://github.com/stojg/silverstripe-dependency-injection'>Code examples with tests</a></li>
 						<li><a href='http://api.silverstripe.org/3.1/class-Injector.html'>Injector API</a></li>
 						<li>Next step: <a href='https://groups.google.com/forum/#!topic/silverstripe-dev/LRj6AhKIaMg'>dev mailing list</a></li>
+						<li><a href='http://docs.angularjs.org/guide/di'>Angularjs on DI</a></li>
 					</ul>
 					<hr />
-					<a href="https://github.com/stojg/slides.stojg.se">github.com/stojg/slides.stojg.se</a> | 
 					<a href="http://slides.stojg.se/">slides.stojg.se</a> | <a href='https://twitter.com/stojg'>@stojg</a>
 				</section>
 			</div>
