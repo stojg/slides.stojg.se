@@ -1,0 +1,236 @@
+This is bullshit
+A story about instant gratification
+20 Feb 2015
+Tags: foo, bar, baz
+
+Stig Lindqvist
+Principal, Developer
+stig@silverstripe.com
+https://stojg.se/
+@stojg
+
+# intro
+# section one - devs love doing stuff
+# - instant gratification
+# -
+# section two - devs want the newest stuff
+# - golang, node, reactjs
+# - apt-get install
+# section three - devs have no clue what they are doing
+# - npm install, composer
+# - keeping it alive and bugfree
+# outro
+
+* In the beginning was the Basic
+
+# http://godoc.org/golang.org/x/tools/present
+
+	10 print "Stig is best"
+	20 goto 10
+
+* .. then there was more Basic
+
+	10 PRINT CHR$(147);
+	20 INPUT "How old are you?";A$
+	30 IF A$="" THEN 20
+	40 A=VAL(A$)
+	50 IF A<11 THEN PRINT "You are lame";
+	60 IF A=11 THEN PRINT "Cool!";
+	70 IF A>11 THEN PRINT "You are lame";
+	80 FOR X=0 TO 3000: NEXT
+	90 GOTO 10
+
+* .. then there was pure Terror
+
+	10 POKE 53280,1
+	20 F1=53281: W=1: POKE F1,W
+	30 POKE 53281, PEEK (53280)
+	40 POKE 788,52
+	50 POKE 808,225
+	60 POKE 775,119
+
+* ..
+*=$0801
+.byte $0c, $08, $0a, $00, $9e, $20
+.byte $34, $30, $39, $36, $00, $00
+.byte $00
+*=$1000
+ldx #$000
+loop lda message,x
+and #$3f
+sta $0400,x -> 1024
+inx
+cpx #$0c
+bne loop
+rts
+message
+  .text "Hello World!"
+
+
+* Devs love doing stuff
+
+* "I can add scrolling parallax with one line of code"
+
+* Devs like shiny stuff
+
+* "Say, is that totally unproven? Gimme!"
+
+* A short list of devops tools
+
+Hit it!
+
+* Operating Systems
+
+- Linux (RHEL, CentOS, Ubuntu, Debian)
+- Unix (Solaris, AIX, HP/UX, etc.)
+- Windows
+- Mac OS X
+
+* Infrastructure as a Service
+
+- Amazon Web Services
+- Rackspace
+- Cloud Foundry
+- Azure
+- OpenStack
+
+* Virtualization Platforms
+
+- VMware
+- KVM
+- Xen
+- VirtualBox
+- Vagrant
+
+* Containerization Tools
+
+- LXC
+- Solaris Containers
+- Docker
+- Linux OS Installation
+- Kickstart
+- Cobbler
+- Fai
+
+* Configuration Management
+
+- Puppet / MCollective
+- Chef
+- Ansible
+- CFEngine
+- SaltStack
+- RANCID
+- Ubuntu Juju
+
+* Test and Build Systems
+
+- Jenkins
+- Maven
+- Ant
+- Gradle
+
+* Application Deployment
+
+- Capistrano
+- Application Servers
+- JBoss
+- Tomcat
+- Jetty
+- Glassfish
+- Websphere
+- Weblogic
+
+* Web Servers
+
+- nginx
+- Apache
+- IIS
+
+* Queues, Caches, etc.
+
+- ActiveMQ
+- RabbitMQ
+- memcache
+- varnish
+- squid
+
+* Databases
+
+- Percona Server
+- MySQL
+- PostgreSQL
+- OpenLDAP
+- MongoDB
+- Cassandra
+- Redis
+- Oracle
+- MS SQL
+
+* Monitoring, Alerting, and Trending
+
+- New Relic
+- Nagios
+- Icinga
+- Graphite
+- Ganglia
+- Cacti
+- PagerDuty
+- Sensu
+- Logging
+- PaperTrail
+- Logstash
+- Loggly
+- Splunk
+- SumoLogic
+
+* Process Supervisors
+
+- Monit
+- runit
+- Supervisor
+- god
+- Blue Pill
+- Upstart
+- systemd
+
+* Security
+
+- Snorby Threat Stack
+- Tripwire
+- Snort
+
+* Miscellaneous Tools
+
+- Multihost SSH Wrapper
+- Code Climate
+- iPerf
+- lldpd
+
+* Programming languages
+
+- php
+- javascript
+- java
+- ruby
+- python
+- golang
+- scala
+
+* Framework / Libraries
+
+- silverstripe
+- drupal
+- rails
+- django
+
+You should have gotten the point by now.
+
+* Devs loose stuff
+
+* You mean we have actual users?
+
+* Who development this?
+
+
+# but to be frank no-one knows what they are doing
+
