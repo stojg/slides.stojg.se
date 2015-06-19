@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Non Functional Requirements</title>
+    <meta charset="utf-8">
+    <style>
+        /* latin-ext */
+        @font-face {
+            font-family: 'Titillium Web';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Titillium Web'), local('TitilliumWeb-Regular'), url(http://fonts.gstatic.com/s/titilliumweb/v4/7XUFZ5tgS-tD6QamInJTcSGR3J8a2Jm30YJvJ3tIMOY.woff2) format('woff2');
+            unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+        @font-face {
+            font-family: 'Titillium Web';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Titillium Web'), local('TitilliumWeb-Regular'), url(http://fonts.gstatic.com/s/titilliumweb/v4/7XUFZ5tgS-tD6QamInJTceHuglUR2dhBxWD-q_ehMME.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        @font-face {
+            font-family: 'Titillium Web';
+            font-style: italic;
+            font-weight: 400;
+            src: local('Titillium WebItalic'), local('TitilliumWeb-Italic'), url(http://fonts.gstatic.com/s/titilliumweb/v4/r9OmwyQxrgzUAhaLET_KOyohs_GVCV93aZwGb7eT-mc.woff2) format('woff2');
+            unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* cyrillic-ext */
+        @font-face {
+            font-family: 'Roboto Slab';
+            font-style: normal;
+            font-weight: 100;
+            src: local('Roboto Slab Thin'), local('RobotoSlab-Thin'), url(http://fonts.gstatic.com/s/robotoslab/v6/MEz38VLIFL-t46JUtkIEgDk33lOKj8VrrOQDzFTd08I.woff2) format('woff2');
+            unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+        }
+        /* cyrillic */
+        @font-face {
+            font-family: 'Roboto Slab';
+            font-style: normal;
+            font-weight: 100;
+            src: local('Roboto Slab Thin'), local('RobotoSlab-Thin'), url(http://fonts.gstatic.com/s/robotoslab/v6/MEz38VLIFL-t46JUtkIEgCRwq2pY8iaQOLhk7E7z3MQ.woff2) format('woff2');
+            unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+        /* greek-ext */
+        @font-face {
+            font-family: 'Roboto Slab';
+            font-style: normal;
+            font-weight: 100;
+            src: local('Roboto Slab Thin'), local('RobotoSlab-Thin'), url(http://fonts.gstatic.com/s/robotoslab/v6/MEz38VLIFL-t46JUtkIEgK1KpwHvXV0QWt_dv_Co7sw.woff2) format('woff2');
+            unicode-range: U+1F00-1FFF;
+        }
+        /* greek */
+        @font-face {
+            font-family: 'Roboto Slab';
+            font-style: normal;
+            font-weight: 100;
+            src: local('Roboto Slab Thin'), local('RobotoSlab-Thin'), url(http://fonts.gstatic.com/s/robotoslab/v6/MEz38VLIFL-t46JUtkIEgE5OsZPwuzdZYuBNMp4jBAU.woff2) format('woff2');
+            unicode-range: U+0370-03FF;
+        }
+        /* vietnamese */
+        @font-face {
+            font-family: 'Roboto Slab';
+            font-style: normal;
+            font-weight: 100;
+            src: local('Roboto Slab Thin'), local('RobotoSlab-Thin'), url(http://fonts.gstatic.com/s/robotoslab/v6/MEz38VLIFL-t46JUtkIEgCxfByIbZlww8-jwhlYXR1g.woff2) format('woff2');
+            unicode-range: U+0102-0103, U+1EA0-1EF1, U+20AB;
+        }
+        /* latin-ext */
+        @font-face {
+            font-family: 'Roboto Slab';
+            font-style: normal;
+            font-weight: 100;
+            src: local('Roboto Slab Thin'), local('RobotoSlab-Thin'), url(http://fonts.gstatic.com/s/robotoslab/v6/MEz38VLIFL-t46JUtkIEgF19lPr_M5u0SZOsLIZJNh8.woff2) format('woff2');
+            unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+        @font-face {
+            font-family: 'Roboto Slab';
+            font-style: normal;
+            font-weight: 100;
+            src: local('Roboto Slab Thin'), local('RobotoSlab-Thin'), url(http://fonts.gstatic.com/s/robotoslab/v6/MEz38VLIFL-t46JUtkIEgNKT0E3VAiFQm6Fsw40EoXw.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+
+        /* latin-ext */
+        @font-face {
+            font-family: 'Inconsolata';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Inconsolata'), url(http://fonts.gstatic.com/s/inconsolata/v11/BjAYBlHtW3CJxDcjzrnZCKE8kM4xWR1_1bYURRojRGc.woff2) format('woff2');
+            unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        body {
+            font-family: 'Titillium Web', sans-serif;
+            font-weight: 400;
+
+        }
+        .remark-slide-content {
+            font-size: 1.4em;
+        }
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 900;
+        }
+
+        blockquote {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+<textarea id="source">
+
+    class: center, middle
+
+    # Non functional Requirements
+
+    > The life of a software architect is a long (and sometimes painful) succession of suboptimal decisions made
+    > partly in the dark. — Philippe Kruchten
+
+    ???
+
+    This talk is about these decisions
+
+    ---
+
+    # The software design process
+
+    --
+
+    1. Find requirements
+
+    --
+
+    2. Design solution
+
+    --
+
+    3. Test design via use cases
+
+    --
+
+    4. Go back to 1
+
+    ---
+
+    # NFR vs FR
+
+    > In systems engineering and requirements engineering, a non-functional requirement is a requirement
+    > that specifies criteria that can be used to judge the __operation of a system, rather than
+    > specific behaviors__. —  [wikipedia.org](http://en.wikipedia.org/wiki/Non-functional_requirement)
+
+    ???
+
+    Non Functional Requirements vs Functional Requirements
+
+    Quality of system
+
+    how well or badly does it do anything?
+
+    ---
+
+    # Functional Requirement
+
+    The system should allow users to see their yearly spending at Burger Fuel
+
+    --
+
+    # Non functional requirement
+
+    The system should be able to do 2000 calculations per second.
+
+    ---
+
+    # Technical Constraints
+
+    ???
+
+    Some examples of technical constraints
+
+    --
+
+    - We only have PHP developers
+
+    --
+
+    - The database only runs on Windows
+
+    --
+
+    - IE 6
+
+    ???
+
+    There are relatively easy to find and easy to check your design with
+
+    ---
+
+    # Business constraints
+
+    ???
+
+    Business desires also contributes to the constraints of an system.
+
+    --
+
+    - We want to partner with AWS to reach a wider audience
+
+    --
+
+    - We have a long term relationship with Incapsula
+
+    ???
+
+    But they often aren't to problematic to find or reason about either
+
+    ---
+
+    # Quality attributes
+
+    - Accessibility
+    - Availability (SLA)
+    - Backup
+    - Deployment
+    - Disaster recovery
+    - Extensibility
+    - Failure management
+    - Maintainability
+    - Performance / response time
+    - Reliability
+    - Response time
+    - Scalability
+    - Security
+
+    ???
+
+    Quality attributes are the trickier one that if left unchecked can cause pain
+    for all people involved in the process.
+
+    ---
+
+    # Bad quality attribute?
+
+    ???
+
+    A bad example of a Quality attribute is:
+
+    --
+
+    "The application must be scalable."
+
+    ???
+
+    This is to imprecise to be usable. Does this means that the system must be:
+
+    --
+
+    - Scale for increase of users?
+
+    --
+
+    - Scale for increased storage?
+
+    --
+
+    - Can be climbed?
+
+    --
+
+    - All of the above?
+
+    ---
+
+    # Better quality attribute?
+
+    ???
+
+    A better version of a scalability might be:
+
+    --
+
+    "The system must be able to increase it's user base from 100 users per minute to 1000 without an increase
+    in effort / cost."
+
+    ???
+
+    Some quality attributes are still hard to test, since it would require a full working test
+    where you simulate all users and interactions.
+
+    ---
+
+    # Performance
+
+    A metric that defines how much work an application needs to do in a given time.
+
+    ???
+
+    Normally this is not super critical in the IT world, compared to Military, Avionics, Finance etc.
+
+    One milliseconds late is often not a disaster in IT.
+
+    ---
+
+    # Performance
+
+    ## Throughput
+
+    The number of transaction an application can process in a given time.
+
+    --
+
+    - Transactions or message per second?
+
+    --
+
+    - Is it average or peak?
+
+    --
+
+    "Just before a lotto draw we have 200 TPS and but we average 2 TPS a month."
+
+    ---
+
+    # Performance
+
+    ## Response Time
+
+    The time taken for processing transactions.
+
+    --
+
+    - Guaranteed and average response time
+
+    --
+
+    - 95th percentile within 4 seconds and all within 15 seconds
+
+    ---
+
+    # Performance
+
+    ## Deadlines
+
+    A batch system must complete all transactions before it is started again.
+
+    ???
+
+    The forecasting system that took 36hrs to produce the forecast for one day.
+
+    ---
+
+    # Perfomance
+
+    ## Warning
+
+    Make sure that a "transaction" is clearly defined and understood by all
+    parties.
+
+    ---
+
+    # Scalability
+
+    How well a solution to some problem will work, when the size of the problem increases.
+
+    ---
+
+    # Scalability
+
+    ## Request load
+
+    > 10 requests per seconds at peak load with an average response time of 1 second.
+
+    > If the request per second increased to 100, would the average response time be 1
+    second?
+
+    --
+
+    - More CPU (and memory) or more machines?
+
+    --
+
+    - Scaling Horizontally still will not fix increased I/O (waiting for database to respond) and have a upper limit.
+
+    --
+
+    - Scaling vertically will cause higher latency and synchronisation problems.
+
+    ---
+
+    # Scalability
+
+    ## Data size
+
+    How does the architecture behaves when the data size or amount increases?
+
+    > We are growing our platform from 10 customer environments to 100.
+
+    > Can we still store logs for one month or increase the storage without
+    > any significant effort/price?
+
+    ---
+
+    # Scalability
+
+    ## Deployment
+
+    How do easy is it to deploy new resource to "increase" the scale?
+
+    > We want the application to automatically create new resources when needed!
+
+    > When our app gets popular, we want a new server within a week!
+
+    ---
+
+    # Scalability
+
+    ## Deployment
+
+    It's super hard and requires a lot of experience, courage and luck.
+
+    ---
+
+    # Modifiability
+
+    Modifiability is a measurement of how easy it may be to change an application
+    for new requirements.
+
+    --
+
+    What needs to be estimated is the effort ($$$) of a guessed eventual change.
+
+    ???
+
+    Note the use of "may" in the previous paragraph.
+
+    --
+
+    - Move from AWS to Digital Ocean
+
+    --
+
+    - Adding a collaborative Content editing area
+
+    --
+
+    - Move from Debian to Red Hat
+
+    ---
+
+    # Security
+
+    ---
+
+    # Security
+
+    ## Authentication
+
+    verify the identity
+
+    ---
+
+    # Security
+
+    ## Authorization
+
+    defined access rights
+
+    ---
+
+    # Security
+
+    ## Encryption
+
+    The message is encrypted
+
+    ---
+
+    # Security
+
+    ## Integrity
+
+    The message haven't been tampered with
+
+    ---
+
+    # Security
+
+    ## Non repudiation
+
+    Proof of sender and receiver
+
+    ---
+
+    # Reliability
+
+    ---
+
+    # Reliability
+
+    ## The four M's
+
+    --
+
+    - Mean Time To Failure (MTTF) - The average time there is correct behavior
+
+    --
+
+    - Mean Time To Diagnose (MTTD) - The average time it takes to diagnose the problem
+
+    --
+
+    - Mean Time To Repair (MTTR) - The average time it takes to fix a problem
+
+    --
+
+    - Mean Time Between Failures (MTBF) - The average time between failures
+
+    ---
+
+    # Other qualities
+
+    - Portability
+    - Testability
+    - Supportability / Maintainability
+
+    ---
+
+    # Testing architecture
+
+    Test architectural design against NFR
+
+    ???
+
+    The proper way to test architecture is by testing them against Non Functional Requirements.
+
+    ---
+
+    # Conflicting qualities
+
+    Often, conflicting requirements must be resolved.
+
+     - Maintainability vs Performance
+     - Performance vs Modifiability
+     - Usability vs Security
+     - Scalability vs Deployment
+
+    Prioritize them!
+
+    ---
+
+    # Changes
+
+    Examples of how non functional requirements changes the design of the system:
+
+    99% vs 99.99% uptime
+
+    > 7.2 hours / month vs 4.32 minutes / month
+
+    ---
+
+    # Fin
+
+    ---
+
+    </textarea>
+<script src="js/remark-latest.min.js">
+</script>
+<script>
+    var slideshow = remark.create();
+</script>
+</body>
+</html>
