@@ -1,109 +1,462 @@
 <!doctype html>
-<html lang="en">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<head>
-		<meta charset="utf-8">
+    <title>reveal.js</title>
 
-		<title>Distributed Computing</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Disturbed Distributed Computing</h1>
+            <blockquote>
+                I don't care if it works on your machine! We are not shipping
+                your machine!<br>
+                - Vidiu Platon
+            </blockquote>
+            <small><a href="https://stojg.se/">stig lindqvist</a> &mdash; <a
+                    href="http://twitter.com/stojg">@stojg</a></small>
+            </p>
+        </section>
+        <section>
+            <p>feel free to interrupt me at any point to ask questions or have
+            opinions.<p>
+            <p>I'm not an expert, but I do have severe post traumatic
+            stress from dealing with networked computers.</p>
+        </section>
+        <section>
+            <h2>What is distributed computing?</h2>
+            <p>
+                A distributed system is a model in which components located on
+                networked computers communicate and coordinate their actions by
+                passing messages.
+            </p>
+        </section>
+        <section>
+            <p>
+            <ul>
+                <li>browsers</li>
+                <li class="fragment">routers</li>
+                <li class="fragment">load balancers</li>
+                <li class="fragment">web servers</li>
+                <li class="fragment">database servers</li>
+                <li class="fragment">asset storage</li>
+            </ul>
+            </p>
+            <p>
+            <h3 class="fragment">a.k.a internet</h3>
+            </p>
+        </section>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <section>
+            <h2>Why distributed computing?</h2>
+            <ul>
+                <li >performance</li>
+                <li class="fragment">availability</li>
+                <li class="fragment">scalability</li>
+                <li class="fragment">reliability</li>
+                <li class="fragment">price</li>
+                <li class="fragment">upgradability</li>
+            </ul>
+        </section>
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+        <section>
+            <h1>the network</h1>
+        </section>
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-		<script>
-			if( window.location.search.match( /print-pdf/gi ) ) {
-				var link = document.createElement( 'link' );
-				link.rel = 'stylesheet';
-				link.type = 'text/css';
-				link.href = 'css/print/pdf.css';
-				document.getElementsByTagName( 'head' )[0].appendChild( link );
-			}
-		</script>
+        <section>
+            <h2>The Network is reliable</h2>
+            <pre>
+                <code data-noescape>
+echo file_get_contents("http://<mark>52.213.12.13</mark>");
+                </code>
+            </pre>
+            <p>this can't fail, the network is reliable</p>
+        </section>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+        <section>
+            <h2>The Network is not reliable</h2>
+            <p>Nothing has 100% uptime</p>
+        </section>
 
-	<body>
+        <section>
+            <h2>The Network has zero latency</h2>
+            <pre>
+                <code data-noescape>
+echo file_get_contents("http://<mark>evil-corp.moon</mark>");
+                </code>
+            </pre>
+            <p>this can't timeout, the network is using quantum entanglement</p>
+        </section>
 
-		<div class="reveal">
+        <section>
+            <h2>The Network has latency</h2>
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h1>Disturbed Distributed Computing</h1>
-					<blockquote>
-						I don't care if it works on your machine! We are not shipping your machine!<br>
-						- Vidiu Platon
-					</blockquote>
-						<small><a href="https://stojg.se/">stig lindqvist</a> &mdash; <a href="http://twitter.com/stojg">@stojg</a></small>
-					</p>
-				</section>
-				<section>
+            <table>
+                <tr ><td>CPU instruction</td><td>1 ns</td></tr>
+                <tr class="fragment"><td>Datacenter roundtrip</td><td>0.5 ms</td></tr>
+                <tr class="fragment"><td>Disk seek</td><td>10 ms</td></tr>
+                <tr class="fragment"><td>Wellington -> Auckland roundtrip</td><td>10 ms</td></tr>
+                <tr class="fragment"><td>New Zealand -> U.S.A roundtrip</td><td>150 ms</td></tr>
+            </table>
 
-				</section>
-				
+            <p class="fragment">Approximate timing for various operations on a typical PC: <a href="http://norvig.com/21-days.html#answers">http://norvig.com/21-days.html#answers</a></p>
+        </section>
 
-			</div>
+        <section>
+            <h2>The Network has infinite bandwidth</h2>
+            <pre>
+                <code data-noescape>
+echo file_get_contents("http://linux.com/<mark>linux_kernel.iso</mark>");
+            </code>
+            </pre>
+            <p>this will take no time at all, the network is broader than the
+                universe</p>
+        </section>
+        <section>
+            <h2>The Network has limited bandwidth</h2>
+            <p>Smartphone photo ~ 3MB<p>
+            <table>
+                <tr class="fragment"><td>56kbit/s</td><td>0.002</td><td>images / second</td></tr>
+                <tr class="fragment"><td>24mbit/s</td><td>1</td><td> image / second</td></tr>
+                <tr class="fragment"><td>50mbit/s</td><td>2</td><td> images / second</td></tr>
+                <tr class="fragment"><td>100mbit/s</td><td>4</td><td> images / second</td></tr>
+                <tr class="fragment"><td>1000mbit/s</td><td>40</td><td> images / second</td></tr>
+            </table>
+        </section>
 
-		</div>
+        <section>
+            <h2>The Network is secure</h2>
+            <pre><code data-trim data-noescape>
+$url = "<mark>http</mark>://secret.com?<mark>username=admin&password=horse</mark>";
+echo file_get_contents($url);
+            </code></pre>
+        </section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+        <section>
+            <h2>The Network is secure</h2>
+             <pre><code data-trim data-noescape>
+$ traceroute 8.8.8.8
+traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
+1  router.silverstripe.com (192.168.1.1)
+2  igw-int.knossos.net.nz (202.160.48.64)
+3  gw-49.knossos.net.nz (202.160.49.1)
+4  xgw2.knossos.net.nz (202.160.48.6)
+5  tengigabitethernet0-2-0-972.wnmur-rt1.fx.net.nz (131.203.245.129)
+6  tengige0-0-2-0-310.aktnz-art1.fx.net.nz (202.53.187.202)
+7  ten-0-3-0-1002.bdr01.akl05.akl.vocus.net.nz (175.45.102.57)
+8  ten-0-2-0-3.cor01.alb01.akl.vocus.net.nz (114.31.202.88)
+9  ten-0-2-1-0.cor03.syd03.nsw.vocus.net.au (114.31.202.36)
+10  ten-1-2-0.bdr03.syd03.nsw.vocus.net.au (114.31.192.53)
+11  as15169.cust.bdr01.syd03.nsw.vocus.net.au (114.31.201.18)
+12  216.239.41.77 (216.239.41.77)
+13  216.239.41.79 (216.239.41.79)
+14  google-public-dns-a.google.com (8.8.8.8)
+             </code></pre>
+        </section>
 
-		<script>
+        <section>
+            <h1>The C.A.P. theorem</h1>
+        </section>
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+        <section>
+            <h2>Theorem</h2>
+            <p>a general proposition not self-evident but proved by a chain of reasoning; a truth established by means of accepted truths.</p>
+        </section>
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        <section>
+            <h2>C.A.P.</h2>
+            <p>Consistency | Availability | Partition tolerance</p>
+            <blockquote>
+                The CAP theorem asserts that any net­worked shared-data system can have only two of three desirable properties. How­ever, by explicitly handling partitions, designers can optimize consistency and availability, thereby achieving some trade-off of all three.
+            </blockquote>
+        </section>
 
-				// Parallax scrolling
-				 //parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-				// parallaxBackgroundSize: '2100px 900px',
+        <section>
+            <h2>Consistency</h2>
+            <p>a read is guaranteed to return the most recent write for a given client.</p>
+        </section>
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+        <section>
+            <h2>Availability</h2>
+            <p>a non-failing node will return a reasonable response within a reasonable amount of time (no error or timeout).</p>
+        </section>
 
-		</script>
-<script type="text/javascript">
-  var _gauges = _gauges || [];
-  (function() {
-    var t   = document.createElement('script');
-    t.type  = 'text/javascript';
-    t.async = true;
-    t.id    = 'gauges-tracker';
-    t.setAttribute('data-site-id', '5316e61feddd5b7a3c0022d1');
-    t.src = '//secure.gaug.es/track.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(t, s);
-  })();
+        <section>
+            <h2>Partition tolerance</h2>
+            <p>the system will continue to function when network partitions occur.</p>
+        </section>
+
+        <section>
+            <img src="CAP-overview.png">
+        </section>
+
+        <section>
+            <h2>Consistency & Partition tolerance</h2>
+            <p>data writes waits until partition has been resolved</p>
+            <p>data reads waits until partition has been resolved</p>
+            <p>reader/writer deals with conflicts and timeouts</p>
+            <ul>
+                <li>git push</li>
+                <li>atomic read and writes, e.g. some SQL modes</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Availability & Partition tolerance</h2>
+            <p>data reads always work, but no guarantees of accuracy.</p>
+            <p>data writes always work, but no guarantees that it will be kept.</p>
+
+            <ul>
+                <li>Content Delivery Networks</li>
+                <li>Facebook</li>
+                <li>AWS</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>"2 out of 3" is not actually true</h2>
+            <p>
+                without partition tolerance, you don't have strong consistency or high availability, you have
+                a non distributed system.
+            </p>
+        </section>
+
+        <section>
+            <h2>It's not black or white</h2>
+            <p>
+                As you slide between non function requirements for features you
+                slide the ratio between CP and AP.
+            </p>
+        </section>
+
+        <section>
+            <h2>Stories from the trenches</h2>
+            <p>
+                .. or how to deal with this as a user / client
+            </p>
+        </section>
+
+        <section>
+            <h3>Wrestling with AWS/cloud</h3>
+            <p>Starting an instance</p>
+        </section>
+
+        <section>
+            <pre><code>
+$instances = runInstances([...]);
+foreach($instance in $instances) {
+    createTags($instance->ID, 'Name', "myserver");
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Dealing with network errors</h2>
+            <pre><code>
+try {
+    $instances = runInstances([...]);
+} catch(ConnectionException $e) {
+    echo ':sadtrombone:';
+    exit(1);
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Dealing with timeouts</h2>
+            <pre><code>
+try {
+    $instances = runInstances([...]);
+} catch(ConnectionException $e) {
+    echo ':sadtrombone:';
+    exit(1);
+} catch(TimeoutException $e) {
+    echo ':hippo:';
+    exit(1);
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Dealing with other API errors</h2>
+            <pre><code>
+try {
+    $instances = runInstances([...]);
+} catch(ConnectionException $e) {
+    echo ':sadtrombone:';
+    exit(1);
+} catch(TimeoutException $e) {
+    echo ':hippo:';
+    exit(1);
+} catch(ThrottleException $e) {
+    echo ':headdesk:';
+    exit(1);
+} catch(InstanceLimitException $e) {
+    echo ':picard:';
+    exit(1);
+} catch(Exception $e) {
+    echo ':ive_stopped_caring_at_this_point:';
+    exit(1);
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Retries with exponential backoff and random jitter</h2>
+            <pre><code data-noescape>
+define('MAX_RETRIES', 5);
+$instances = runInstances([...]);
+$retries = 0
+do {
+    <mark>$sleepTime = pow(2, $retries) * 100 + rand(0, 100);</mark>
+    usleep($sleepTime);
+    $status = getStatus($instances);
+
+    if($status == SUCCESS) $retry = false;
+    elseif($status == NOT_READY) $retry = true;
+    elseif($status == THROTTLED) $retry = true;
+    else $retry = false; // some random error, stop trying
+    retries++;
+} while($retry && $retries < MAX_RETRIES);
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Transactions</h2>
+            <pre><code>
+try {
+    $instance = runInstance([...]);
+    createTags($instance);
+    stopInstance($instance);
+    $ami = createImage($instance);
+    createTags($ami);
+    copyAMI($ami, 'client-account')
+    deleteAMI($ami);
+} catch(Exception $e) {
+    // we can:
+    // 1) retry the last step a couple of times
+    // 2) but eventually we need to undo all the things
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>How would you categorize AWS?</h2>
+            <p>Availability & Partition tolerance?</p>
+            <p>or</p>
+            <p>Consistency & Partition tolerance?</p>
+        </section>
+
+        <section>
+            <h2>AWS</h2>
+            <p>Availability & Partition tolerance</p>
+            <p>Consistency model: "Eventual consistency"</p>
+        </section>
+
+        <section>
+            <h2>Dealing with The State</h2>
+            <p>my archenemy</p>
+        </section>
+
+        <section>
+            <h2>Scaling out a web site</h2>
+            <img src="generic_tier_webserver_1.png" width="400px">
+        </section>
+
+        <section>
+            <h2>Need moar servers</h2>
+            <p>separate out the database</p>
+            <img src="generic_tier_webserver_2.png" width="400px">
+        </section>
+
+        <section>
+            <h2>Sessions</h2>
+            <p>need separate session storage so the visitors can bounce</p>
+            <img src="generic_tier_webserver_3.png" width="400px">
+        </section>
+
+        <section>
+            <h2>assets and caches</h2>
+            <p>uploadable artifacts and clusterwide cache</p>
+            <img src="generic_tier_webserver_4.png" width="400px">
+        </section>
+
+        <section>
+            <h2>.. and actually</h2>
+            <p>the LBs and services needs to be redundant</p>
+            <img src="generic_tier_webserver_5.png" width="400px">
+        </section>
+
+        <section>
+            <h2>easily scalable</h2>
+            <p>now we can scale the webservers without worrying</p>
+            <img src="generic_tier_webserver_state.png" width="400px">
+        </section>
+
+        <section>
+            <h2>Oh dear</h2>
+            <p>Each arrow is a network connection that needs to handle:</p>
+            <ul>
+                <li>network unreliability</li>
+                <li>network latency</li>
+                <li>network bandwidth</li>
+                <li>network security</li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Endnote</h1>
+            <p >computing is easy to scale</p>
+            <p class="fragment">avoid state if possible</p>
+            <p class="fragment">be defensive and paranoid</p>
+            <p class="fragment">.. or toss it over the wall to the sysadmins</p>
+        </section>
+
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
 </script>
-	</body>
+</body>
 </html>
