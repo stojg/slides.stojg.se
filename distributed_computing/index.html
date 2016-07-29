@@ -41,6 +41,7 @@
             opinions.<p>
             <p>I'm not an expert, but I do have severe post traumatic
             stress from dealing with networked computers.</p>
+            <img src="expert.gif" class="stretch">
         </section>
         <section>
             <h2>What is distributed computing?</h2>
@@ -80,17 +81,21 @@
 
         <section>
             <h1>the network</h1>
+            <img src="network.jpg">
         </section>
-
 
         <section>
             <h2>The Network is reliable</h2>
+            <p>this can't possible fail, the network is reliable</p>
             <pre>
                 <code data-noescape>
-echo file_get_contents("http://<mark>52.213.12.13</mark>");
+echo file_get_contents("http://52.213.12.13");
                 </code>
             </pre>
-            <p>this can't fail, the network is reliable</p>
+        </section>
+
+        <section>
+            <img src="no_really.gif" class="stretch">
         </section>
 
         <section>
@@ -100,12 +105,16 @@ echo file_get_contents("http://<mark>52.213.12.13</mark>");
 
         <section>
             <h2>The Network has zero latency</h2>
+            <p>this can't timeout, the network is using quantum entanglement</p>
             <pre>
                 <code data-noescape>
-echo file_get_contents("http://<mark>evil-corp.moon</mark>");
+echo file_get_contents("http://evil-corp.moon");
                 </code>
             </pre>
-            <p>this can't timeout, the network is using quantum entanglement</p>
+        </section>
+
+        <section>
+            <img src="facepalm.gif" class="stretch">
         </section>
 
         <section>
@@ -124,13 +133,17 @@ echo file_get_contents("http://<mark>evil-corp.moon</mark>");
 
         <section>
             <h2>The Network has infinite bandwidth</h2>
-            <pre>
-                <code data-noescape>
-echo file_get_contents("http://linux.com/<mark>linux_kernel.iso</mark>");
-            </code>
-            </pre>
             <p>this will take no time at all, the network is broader than the
                 universe</p>
+            <pre>
+                <code data-noescape>
+echo file_get_contents("http://linux.com/linux_kernel.iso");
+            </code>
+            </pre>
+        </section>
+
+        <section>
+            <img src="angry.gif" class="stretch">
         </section>
         <section>
             <h2>The Network has limited bandwidth</h2>
@@ -147,13 +160,17 @@ echo file_get_contents("http://linux.com/<mark>linux_kernel.iso</mark>");
         <section>
             <h2>The Network is secure</h2>
             <pre><code data-trim data-noescape>
-$url = "<mark>http</mark>://secret.com?<mark>username=admin&password=horse</mark>";
+$url = "http://secret.com?username=admin&password=horse";
 echo file_get_contents($url);
             </code></pre>
         </section>
 
         <section>
-            <h2>The Network is secure</h2>
+            <img src="screaming_internally.gif" class="stretch">
+        </section>
+
+        <section>
+            <h2>The Network is not secure</h2>
              <pre><code data-trim data-noescape>
 $ traceroute 8.8.8.8
 traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
@@ -192,6 +209,11 @@ traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
         </section>
 
         <section>
+            <h2>wat?</h2>
+            <img src="what.gif" class="stretch">
+        </section>
+
+        <section>
             <h2>Consistency</h2>
             <p>a read is guaranteed to return the most recent write for a given client.</p>
         </section>
@@ -207,7 +229,7 @@ traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
         </section>
 
         <section>
-            <img src="CAP-overview.png">
+            <img src="CAP-overview.png" class="stretch">
         </section>
 
         <section>
@@ -242,7 +264,7 @@ traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
         </section>
 
         <section>
-            <h2>It's not black or white</h2>
+            <h2>Sliding</h2>
             <p>
                 As you slide between non function requirements for features you
                 slide the ratio between CP and AP.
@@ -259,9 +281,11 @@ traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
         <section>
             <h3>Wrestling with AWS/cloud</h3>
             <p>Starting an instance</p>
+            <img src="on_aws.gif" class="stretch">
         </section>
 
         <section>
+            <h3>Super naive</h3>
             <pre><code>
 $instances = runInstances([...]);
 foreach($instance in $instances) {
@@ -361,16 +385,13 @@ try {
         </section>
 
         <section>
-            <h2>How would you categorize AWS?</h2>
-            <p>Availability & Partition tolerance?</p>
-            <p>or</p>
-            <p>Consistency & Partition tolerance?</p>
+            <img src="feed_up.gif" class="stretch">
         </section>
 
         <section>
-            <h2>AWS</h2>
-            <p>Availability & Partition tolerance</p>
-            <p>Consistency model: "Eventual consistency"</p>
+            <h3>Availability & Partition tolerance?</h3>
+            <p>or</p>
+            <h3>Consistency & Partition tolerance?</h3>
         </section>
 
         <section>
@@ -379,38 +400,42 @@ try {
         </section>
 
         <section>
+            <img src="drinking.gif" class="stretch">
+        </section>
+
+        <section>
             <h2>Scaling out a web site</h2>
-            <img src="generic_tier_webserver_1.png" width="400px">
+            <img src="generic_tier_webserver_1.png" class="stretch">
         </section>
 
         <section>
             <h2>Need moar servers</h2>
             <p>separate out the database</p>
-            <img src="generic_tier_webserver_2.png" width="400px">
+            <img src="generic_tier_webserver_2.png" class="stretch">
         </section>
 
         <section>
             <h2>Sessions</h2>
             <p>need separate session storage so the visitors can bounce</p>
-            <img src="generic_tier_webserver_3.png" width="400px">
+            <img src="generic_tier_webserver_3.png" class="stretch">
         </section>
 
         <section>
             <h2>assets and caches</h2>
             <p>uploadable artifacts and clusterwide cache</p>
-            <img src="generic_tier_webserver_4.png" width="400px">
+            <img src="generic_tier_webserver_4.png" class="stretch">
         </section>
 
         <section>
             <h2>.. and actually</h2>
             <p>the LBs and services needs to be redundant</p>
-            <img src="generic_tier_webserver_5.png" width="400px">
+            <img src="generic_tier_webserver_5.png" class="stretch">
         </section>
 
         <section>
             <h2>easily scalable</h2>
             <p>now we can scale the webservers without worrying</p>
-            <img src="generic_tier_webserver_state.png" width="400px">
+            <img src="generic_tier_webserver_state.png" class="stretch">
         </section>
 
         <section>
@@ -422,6 +447,10 @@ try {
                 <li>network bandwidth</li>
                 <li>network security</li>
             </ul>
+        </section>
+
+        <section>
+            <img src="drinking_more.gif" class="stretch">
         </section>
 
         <section>
