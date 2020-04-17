@@ -8,5 +8,5 @@ run: build
 	docker run --rm -it -p 8043:8043 stojg/slides.stojg.se
 
 push: build
-	docker build . -t stojg/slides.stojg.se:latest -t stojg/www.stojg.se:$(shell git rev-parse --verify HEAD)
+	docker build . -t stojg/slides.stojg.se:latest -t stojg/slides.stojg.se:$(shell git rev-parse --verify HEAD)
 	docker push stojg/slides.stojg.se
